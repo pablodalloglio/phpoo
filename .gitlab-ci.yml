@@ -20,7 +20,7 @@ job_lint:
   stage: check_syntax
   script:
     - chmod +x ./scripts -Rf
-    - ./scripts/lint.sh app/
+    - ./scripts/lint.sh App/
   only:
     - master
 
