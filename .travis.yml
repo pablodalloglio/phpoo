@@ -6,70 +6,14 @@ sudo: required
 dist: trusty
 
 before_script:
-  - sudo apt-get update -yqq
-  - sudo apt-get install git zip unzip -qq
-  - composer require squizlabs/php_codesniffer phpmd/phpmd sebastian/phpcpd phpunit/phpunit phploc/phploc
+  - composer require --dev phpunit/phpunit
 
 stages:
-  - check_syntax
   - unit_tests
-  - analyse_code
-
-job_lint:
-  stage: check_syntax
-  script:
-    - chmod +x ./scripts -Rf
-    - ./scripts/lint.sh App/
-  only:
-    - master
 
 job_phpunit:
   stage: unit_tests
   script:
-    - ./vendor/bin/phpunit --bootstrap init.php App/Tests
+    - vendor/bin/phpunit --bootstrap init.php App/Tests
   only:
     - master
-    
-job_phpcs:
-  stage: analyse_code
-  script:
-    - php vendor/bin/phpcs --config-set ignore_errors_on_exit 1
-    - php vendor/bin/phpcs --config-set ignore_warnings_on_exit 1
-    - php vendor/bin/phpcs --standard=PSR2 App > phpcs.log
-  artifacts:
-    paths:
-      - phpcs.log
-  only:
-    - master
-
-job_phpmd:
-  stage: analyse_code
-  script:
-    - vendor/bin/phpmd App text cleancode,codesize,design,unusedcode,naming --suffixes php --reportfile phpmd.log || true
-  artifacts:
-    paths:
-      - phpmd.log
-  only:
-    - master
-
-job_phploc:
-  stage: analyse_code
-  script:
-    - vendor/bin/phploc App/ > phploc.log
-  artifacts:
-    paths:
-      - phploc.log
-  only:
-    - master
-    
-job_phpcpd:
-  stage: analyse_code
-  script:
-    - vendor/bin/phpcpd App/ > phpcpd.log ||true
-  artifacts:
-    paths:
-      - phpcpd.log
-  only:
-    - master
-
-
