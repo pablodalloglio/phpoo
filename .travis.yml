@@ -8,6 +8,6 @@ stages:
 job_phpunit:
   stage: unit_tests
   script:
-    - ./vendor/bin/phpunit --bootstrap init.php App/Tests
+    - phpunit --bootstrap init.php App/Tests
   only:
     - master
