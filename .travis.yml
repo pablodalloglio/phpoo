@@ -6,7 +6,7 @@ sudo: required
 dist: trusty
 
 before_install:
-  - composer require --dev phpunit/phpunit
+  - composer require --dev phpunit/phpunit 5.7.5
 install:
   - composer install --no-interaction --ignore-platform-reqs
 
