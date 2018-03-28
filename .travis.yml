@@ -2,12 +2,6 @@ language: php
 php:
   - 5.6
 
-stages:
-  - unit_test
-
-jobs:
-  unit_test:
-    stage: unit_test
-    script:
-      - phpunit --bootstrap init.php App/Tests
+script:
+  - phpunit --bootstrap init.php App/Tests
 
