@@ -2,9 +2,6 @@ language: php
 php:
   - 5.6
 
-before_script:
-  - composer require phpunit/phpunit 5.7.5
-
 stages:
   - unit_tests
 
