@@ -5,8 +5,10 @@ php:
 sudo: required
 dist: trusty
 
-before_script:
+before_install:
   - composer require --dev phpunit/phpunit
+install:
+  - composer install --no-interaction --ignore-platform-reqs
 
 stages:
   - unit_tests
