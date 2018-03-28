@@ -7,6 +7,7 @@ stages:
 
 jobs:
   unit_test:
-    - stage: unit_test
-      script: phpunit --bootstrap init.php App/Tests
+    stage: unit_test
+    script:
+      - phpunit --bootstrap init.php App/Tests
 
