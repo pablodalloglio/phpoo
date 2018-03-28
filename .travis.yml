@@ -26,7 +26,7 @@ job_lint:
 job_phpunit:
   stage: unit_tests
   script:
-    - vendor/bin/phpunit --bootstrap init.php App/Tests
+    - ./vendor/bin/phpunit --bootstrap init.php App/Tests
   only:
     - master
     
