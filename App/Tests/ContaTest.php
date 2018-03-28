@@ -37,4 +37,3 @@ class ContaTest extends TestCase
         //Transaction::close();
     }
 }
-
